@@ -1,12 +1,12 @@
-# Use the official MariaDB image from the Docker Hub
-FROM mariadb:latest
 
-RUN     mkdir /shared
+FROM    debian:bullseye
 
-WORKDIR /shared
+RUN     apt update -y && apt-get install mariadb-server -y
 
-COPY    create_db.sh ./
+COPY    ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN     apt update -y && chmod +x create_db.sh
+COPY    ./tools/create_db.sh  /
 
-ENTRYPOINT [ "./create_db.sh" ]
+RUN     chmod +x create_db.sh 
+
+CMD ["/create_db.sh"]
