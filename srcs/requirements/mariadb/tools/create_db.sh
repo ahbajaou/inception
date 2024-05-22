@@ -1,15 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
+apt-get install wget mariadb-server gettext-base net-tools iputils-ping vim -y
+sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)"
+echo "[Success: MariaDB dependencies]"
 
- mysql service start
+sleep 5
 
-sleep 6
+service mysql start
 
-echo "CREATE DATABASE IF NOT EXISTS $data_name ;" > db1.sql
-echo "CREATE USER IF NOT EXISTS '$data_user'@'%' IDENTIFIED BY '$data_pwd' ;" >> db1.sql
-echo "GRANT ALL PRIVILEGES ON $data_name.* TO '$data_user'@'%' ;" >> db1.sql
+sleep 5
+
+data_name="ahmed"
+data_user="ahbajaou"
+data_pwd="test" 
+
+echo "CREATE DATABASE IF NOT EXISTS ${data_name} ;" > db1.sql
+echo "CREATE USER IF NOT EXISTS '${data_user}'@'%' IDENTIFIED BY '${data_pwd}' ;" >> db1.sql
+echo "GRANT ALL PRIVILEGES ON ${data_name}.* TO '${data_user}'@'%' ;" >> db1.sql
 echo "FLUSH PRIVILEGES;" >> db1.sql
 
 mysql < db1.sql
 
-mysqld
+rm db1.sql
+
+echo "MariaDB setup is complete."
