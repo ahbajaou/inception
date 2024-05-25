@@ -1,8 +1,14 @@
 FROM    debian:bullseye
 
+RUN apt update -y 
 
-RUN apt-get update -y && apt-get install php-fpm php-mysql -y && apt-get install curl -y
+RUN apt install php-fpm php-mysql -y
 
-COPY    ./tools/script.sh  /
+RUN apt install curl -y
+
+
+COPY ./tools/script.sh /
+COPY ./tools/wp-config.php /
+
 RUN   chmod +X /script.sh
 CMD [ "/script.sh" ]
