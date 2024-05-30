@@ -1,10 +1,5 @@
 #!/bin/bash
 
-data_name="ahmed"
-data_user="ahbajaou"
-data_pwd="test"
-root_pass="root"
-
 service mariadb start
 
 mysql_secure_installation << EOF

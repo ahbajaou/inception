@@ -1,19 +1,5 @@
 #!/bin/bash
 
-db_name="mariadb"
-db_user="ahbajaou"
-db_pwd="123"
-
-
-DOMAIN_NAME="ahbajau.fr"
-WP_TITLE="tt"
-WP_ADMIN_USR="CHB"
-WP_ADMIN_PWD="pwd"
-WP_ADMIN_EMAIL="AMED@gmail.com"
-WP_USR="ahbajaou"
-WP_EMAIL="ahbajau@gmail.com"
-WP_PWD="123"
-
 
 # create directory to use in nginx container later and also to setup the wordpress conf
 mkdir /var/www/
