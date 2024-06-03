@@ -8,9 +8,5 @@ re:
 	@docker-compose -f ./srcs/docker-compose.yml up --build
 
 clean:
-	docker stop $(docker ps) \
-	&& docker rm $(docker ps -aq) \
-	&& docker rmi $(docker images -aq) \
-	&& docker volume prune -af \
-	&& docker network prune -f \
-	&& docker system prune -af
+	docker system prune -af && docker volume prune --force
+	# docker rm $(docker images -a)

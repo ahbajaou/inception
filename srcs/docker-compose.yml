@@ -3,13 +3,13 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx/.
-    image: nginx:42
+    image: nginx
     ports:
-     - "443:443"
+     - "80:80"
     depends_on:
       - wordpress
-    # volumes:
-    #  - wordpress:/var/www/html
+    volumes:
+     - wordpress:/var/www/html
     networks:
       - inception
     env_file:
@@ -18,22 +18,26 @@ services:
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress/.
-    image: wordpress:42
-    # depends_on:
-    #   - mariadb
-    # volumes:
-    #   - wordpress:/var/www/html
+    image: wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress:/var/www/html
     env_file:
       - env.env
+    ports:
+     - "9000:9000"
     networks:
       - inception
     restart: always
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb/.
-    image: mariadb:42
-    # volumes:
-    #   - mariadb:/var/lib/mysql
+    image: mariadb
+    volumes:
+      - mariadb:/var/lib/mysql
+    ports:
+      - "3306:3306"
     env_file:
       - env.env
     networks:
@@ -43,3 +47,17 @@ services:
 networks:
   inception:
     name: inception
+
+volumes:
+    wordpress:
+        driver: "local"
+        driver_opts:
+            o: bind
+            type: ext4
+            device: /home/ahbajaou/data/wp
+    mariadb:
+        driver: "local"
+        driver_opts:
+            o: bind
+            type: ext4
+            device: /home/ahbajaou/data/db

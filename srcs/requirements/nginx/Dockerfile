@@ -5,8 +5,8 @@ FROM    debian:bullseye
 RUN apt-get update && apt-get install -y nginx && apt-get clean
 
 # Copy custom configuration file from the current directory
-COPY index.html /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+# COPY index.html /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 
 # Expose port 80
 
