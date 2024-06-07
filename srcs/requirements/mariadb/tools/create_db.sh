@@ -2,7 +2,7 @@
 
 service mariadb start
 
-sleep 2
+sleep 4
 
 mysql_secure_installation << EOF
 $root_pass
