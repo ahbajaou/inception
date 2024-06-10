@@ -8,6 +8,5 @@ re:
 	@docker compose -f ./srcs/docker-compose.yml up --build
 
 clean:
-	docker stop $$(docker ps -qa)
 	docker system prune -af 
 	docker volume rm  srcs_mariadb srcs_wordpress

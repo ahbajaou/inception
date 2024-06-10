@@ -9,3 +9,4 @@ COPY ./tools/nginx_script.sh /
 RUN  chmod +x /nginx_script.sh
 
 CMD ["/nginx_script.sh"]
+

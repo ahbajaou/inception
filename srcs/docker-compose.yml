@@ -53,11 +53,11 @@ volumes:
         driver: "local"
         driver_opts:
             o: bind
-            type: ext4
+            type: none
             device: /home/ahbajaou/data/wp
     mariadb:
         driver: "local"
         driver_opts:
             o: bind
-            type: ext4
+            type: none
             device: /home/ahbajaou/data/db
