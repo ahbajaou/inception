@@ -27,9 +27,10 @@ wp core install --url=$DOMAIN_NAME/ --title=$WP_TITLE --admin_user=$WP_ADMIN_USR
 wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
 
 wp core is-installed --allow-root
+
 wp user list --allow-root
 
-wp theme install astra --activate --allow-root
+wp theme install oceanwp --activate --allow-root
 
 
 
